@@ -1,5 +1,5 @@
 import CompaniesSection from "../Components/CompaniesSection"
-import CompanyRegisterForm from "../Components/CompanyRegisterForm"
+import CompanyRegisterForm from "../Components/CompanyRegister/CompanyRegisterForm"
 import SideBar from "../Components/SideBar"
 const Companies = () => {
   return (

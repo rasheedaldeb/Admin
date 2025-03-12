@@ -1,7 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { StatesProvider } from "./Context/Context";
 import Home from "./Pages/Home"
-import AdminRegister from "./Pages/AdminRegister"
 import AdminSignin from "./Pages/AdminSignin"
 import Advertisement from "./Pages/Advertisement"
 import Companies from "./Pages/Companies";
@@ -13,7 +12,6 @@ function App() {
     <>
     <StatesProvider>
       <Routes>
-        <Route path="/admin-register" element={<AdminRegister/>}/>
         <Route path="/admin-signin" element={<AdminSignin/>}/>
         <Route element={<ProtectedRoute/>}>
         <Route path="/" element={<Home/>}/>

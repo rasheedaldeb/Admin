@@ -29,13 +29,20 @@ const AddAdvertisement = () => {
         console.log(res)
         setCreatedAd(!createdAd)
         setSuccess(res.data.message)
-        setSuccess("")
+        setTimeout(()=>{
+          setSuccess("")
+        },2000)
         setContent("")
         setImage("")
         setIsCreating(false)
       }).catch((err)=>{
         console.log(err)
+        setError(err.response.data.message)
+        setTimeout(()=>{
+          setError("")
+        },2000)
         setIsCreating(false)
+
         if(err.status === 401){
           alert("انتهت صلاحية الجلسة, يرجى تسجيل الدخول مرة اخرى")
           localStorage.removeItem("token")

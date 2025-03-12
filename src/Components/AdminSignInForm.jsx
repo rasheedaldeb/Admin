@@ -74,7 +74,7 @@ const SignInForm = () => {
               name="password"
               type={showPass ?  "text": "password"}
               className="w-[80%] h-full outline-none "
-              placeholder="ضع كلمة مرور قوية"
+              placeholder="ضع كلمة مرور "
               required
               minLength={8}
               onChange={(e) => setPassword(e.target.value)}
@@ -91,13 +91,7 @@ const SignInForm = () => {
             {success}
           </div>
           }
-          <div class="mt-5 flex items-center justify-between">
-            <p className="text-secondary flex items-center justify-center font-bold">
-              ليس لديك حساب؟
-              <Link to="/admin-register" className="text-white underline">
-                انشاء حساب
-              </Link>
-            </p>
+          <div class="mt-5 flex items-center justify-center">
             <button
               type="submit"
               class="bg-primary hover:bg-secondary block cursor-pointer rounded-3xl px-6 py-3 text-lg tracking-wider text-white"

@@ -1,12 +1,13 @@
 import { useContext, useState } from "react"
-import SectionHeader from "./SectionHeader"
+import "./CompanyRegisterForm.css"
+import SectionHeader from "../SectionHeader"
 import axios from "axios"
 import { Oval } from "react-loader-spinner"
 import { useNavigate } from "react-router-dom"
-import { StatesContext } from "../Context/Context"
+import { StatesContext } from "../../Context/Context"
 const CompanyRegisterForm = () => {
   const token = localStorage.getItem("token")
-  const {setCreatedCompany} = useContext(StatesContext)
+  const {setCreatedCompany, createdCompany} = useContext(StatesContext)
   const [showPass, setShowPass] = useState(false)
   // company inputs states
   const [name, setName] = useState("")
@@ -40,8 +41,11 @@ const CompanyRegisterForm = () => {
         Authorization:`Bearer ${token}`
       }
     }).then((res)=>{
-        setCreatedCompany(true)
+        setCreatedCompany(!createdCompany)
         setSuccess(res.data.message)
+        setTimeout(()=>{
+          setSuccess("")
+        },2000)
         setName("")
         setEmail("")
         setImage("")
@@ -54,6 +58,9 @@ const CompanyRegisterForm = () => {
       setIsSending(false)
     }).catch((err)=>{
       setError(err.response.data.message);
+      setTimeout(()=>{
+        setError("")
+      },2000)
       console.log(err)
       setIsSending(false)
       if(err.response.status === 401){
@@ -103,13 +110,18 @@ const CompanyRegisterForm = () => {
             </label>
             <input
               name="number"
-              type="number"
+              type="tel"
               value={phone}
-              className="border-primary w-full rounded-3xl border bg-gray-100 px-4 py-3 text-lg text-gray-800 transition-all outline-none focus:bg-gray-100"
+              className="
+              border-primary w-full rounded-3xl border bg-gray-100 px-4 py-3 text-lg text-gray-800 transition-all outline-none focus:bg-gray-100"
               placeholder="ادخل رقم الهاتف"
+              onInvalid={(e)=>{
+                e.currentTarget.setCustomValidity("يجب ان يبدأ الرقم ب , 09")
+              }}
               required
               minLength={10}
               onChange={(e)=> setPhone(e.target.value)}
+              dir="rtl"
             />
           </div>
           <div>
@@ -169,6 +181,7 @@ const CompanyRegisterForm = () => {
                 <input type="file" 
                 id="image" 
                 className="hidden"
+                required
                 onChange={(e)=> setImage(e.target.files[0])}
                 />
                 <img  
@@ -183,7 +196,13 @@ const CompanyRegisterForm = () => {
             </label>
             <input
               name="name"
-              type="text"
+              type="url"
+              onInvalid={(e)=>{
+                e.currentTarget.setCustomValidity('يجب ان يبدأ الرابط ب , https')
+              }}
+              onInput={(e)=>{
+                e.currentTarget.setCustomValidity('')
+              }}
               value={socialUrl}
               className="border-primary w-full rounded-3xl border bg-gray-100 px-4 py-3 text-lg text-gray-800 transition-all outline-none focus:bg-gray-100"
               placeholder="ادخل رابط"
@@ -192,9 +211,10 @@ const CompanyRegisterForm = () => {
             />
           </div>
         </div>
-        {error ? <div className="flex items-center justify-center text-xl font-bold text-red-600">
+        {error && <div className="flex items-center justify-center text-xl font-bold text-red-600">
           {error}
-          </div> : <div className="flex items-center justify-center text-xl font-bold text-green-600">
+          </div>}  
+          {success && <div className="flex items-center justify-center text-xl font-bold text-green-600">
             {success}
             </div>}
         <div className="flex items-center justify-center">

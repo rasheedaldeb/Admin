@@ -5,6 +5,7 @@ import { StatesContext } from "../Context/Context"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
 import { Oval } from "react-loader-spinner"
+import ModalImage from "react-modal-image"
 const AdvertisementSection = () => {
   const token = localStorage.getItem("token")
   const navigate = useNavigate()
@@ -89,7 +90,9 @@ const AdvertisementSection = () => {
               </div>:
               advertisement.filter((item)=> item.content.toLowerCase().includes(inputValue)).map((item)=> (
                 <div className="addv flex flex-col items-center gap-2">
-                <img src={`${import.meta.env.VITE_API_URL}${item.imageUrl}`} 
+                <ModalImage
+                 small={`${import.meta.env.VITE_API_URL}${item.imageUrl}`} 
+                 large={`${import.meta.env.VITE_API_URL}${item.imageUrl}`} 
                 loading="lazy"
                 alt="add" 
                 className="h-[250px]"/>
