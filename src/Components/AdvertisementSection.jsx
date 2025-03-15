@@ -6,7 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { Oval } from "react-loader-spinner";
 import ModalImage from "react-modal-image";
 const AdvertisementSection = () => {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("admintoken");
+  const { createdAd } = useContext(StatesContext);
   const navigate = useNavigate();
   // delete ad states
   const { isDeleted, setIsDeleted } = useContext(StatesContext);
@@ -15,8 +16,8 @@ const AdvertisementSection = () => {
   const [adId, setAdId] = useState();
   // fetch ads states
   const [advertisement, setAdvertisement] = useState([]);
-  const { createdAd } = useContext(StatesContext);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   const [inputValue, setInputValue] = useState("");
   // fetch ads api
   useEffect(() => {
@@ -38,8 +39,12 @@ const AdvertisementSection = () => {
         console.log(e);
         if (e.status === 401) {
           alert("انتهت صلاحية الجلسة, يرجى تسجيل الدخول مرة اخرى");
-          localStorage.removeItem("token");
+          localStorage.removeItem("admintoken");
           navigate("/admin-signin");
+        }
+        if (e.message === "Network Error") {
+          setError("لايوجد اتصال بالانترنت");
+          setIsLoading(false);
         }
       }
     };
@@ -149,6 +154,11 @@ const AdvertisementSection = () => {
                 </div>
               </div>
             ))
+        )}
+        {error && (
+          <div className="flex items-center justify-center text-xl text-red-600">
+            {error}
+          </div>
         )}
       </div>
     </section>

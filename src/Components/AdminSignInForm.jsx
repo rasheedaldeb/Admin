@@ -27,17 +27,13 @@ const SignInForm = () => {
         },
       })
       .then((res) => {
+        console.log(res);
         setTimeout(() => {
-          if (res.data.data.role !== "admin") {
-            setIsSignningIn(false);
-            setError("الايميل غير موجود , انشأ حساب جديد من فضلك");
-          } else {
-            setError("");
-            setSuccess(res.data.message);
-            setIsSignningIn(false);
-            localStorage.setItem("token", res.data.token);
-            navigate("/");
-          }
+          setSuccess(res.data.message);
+          setError("");
+          setIsSignningIn(false);
+          localStorage.setItem("admintoken", res.data.token);
+          navigate("/");
         }, 2000);
       })
       .catch((err) => {
@@ -91,11 +87,12 @@ const SignInForm = () => {
               />
             </div>
           </div>
-          {error ? (
+          {error && (
             <div className="flex items-center justify-center text-xl text-red-600">
               {error}
             </div>
-          ) : (
+          )}
+          {success && (
             <div className="flex items-center justify-center text-xl text-green-600">
               {success}
             </div>

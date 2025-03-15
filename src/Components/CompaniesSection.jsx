@@ -5,7 +5,7 @@ import { Oval } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
 import { StatesContext } from "../Context/Context";
 const CompaniesSection = () => {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("admintoken");
   const { createdCompany } = useContext(StatesContext);
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState("");
@@ -16,6 +16,7 @@ const CompaniesSection = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   // fetch companies states
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   const [companiesData, setCompaniesData] = useState([]);
   useEffect(() => {
     const fetchCompanies = async () => {
@@ -39,8 +40,11 @@ const CompaniesSection = () => {
         console.log(e);
         if (e.status === 401) {
           alert(e.response.data.message);
-          localStorage.removeItem("token");
+          localStorage.removeItem("admintoken");
           navigate("/admin-signin");
+        }
+        if (e.message === "Network Error") {
+          setError("لايوجد اتصال بالانترنت");
         }
       }
     };
@@ -98,7 +102,7 @@ const CompaniesSection = () => {
               wrapperClass=""
             />
           </div>
-        ) : (
+        ) : companiesData.length !== 0 ? (
           companiesData
             .filter((item) => item.name.toLowerCase().includes(inputValue))
             .map((item) => (
@@ -171,6 +175,15 @@ const CompaniesSection = () => {
                 </div>
               </div>
             ))
+        ) : (
+          <div className="flex items-center justify-center">
+            <p className="text-secondary text-xl">لايوجد شركات</p>
+          </div>
+        )}
+        {error && (
+          <div className="flex items-center justify-center text-xl text-red-600">
+            {error}
+          </div>
         )}
       </div>
     </section>

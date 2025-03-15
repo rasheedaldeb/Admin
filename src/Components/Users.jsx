@@ -4,11 +4,12 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Oval } from "react-loader-spinner";
 const Users = () => {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("admintoken");
   const navigate = useNavigate();
   // fetch companies states
   const [inputValue, setInputValue] = useState("");
   const [isFetching, setIsFetching] = useState(false);
+  const [error, setError] = useState("");
   const [userData, setUserData] = useState([]);
   useEffect(() => {
     const fetchUsers = async () => {
@@ -30,8 +31,11 @@ const Users = () => {
         console.log(e);
         if (e.status === 401) {
           alert(e.response.data.message);
-          localStorage.removeItem("token");
+          localStorage.removeItem("admintoken");
           navigate("/admin-signin");
+        }
+        if (e.message === "Network Error") {
+          setError("لايوجد اتصال بالانترنت");
         }
       }
     };
@@ -60,7 +64,7 @@ const Users = () => {
               wrapperClass=""
             />
           </div>
-        ) : (
+        ) : userData.length !== 0 ? (
           userData
             .filter((item) => item.name.toLowerCase().includes(inputValue))
             .map((item) => (
@@ -89,6 +93,15 @@ const Users = () => {
                 </div>
               </div>
             ))
+        ) : (
+          <div className="flex items-center justify-center">
+            <p className="text-secondary text-xl">لا يوجد مستخدمين</p>
+          </div>
+        )}
+        {error && (
+          <div className="flex items-center justify-center text-xl text-red-600">
+            {error}
+          </div>
         )}
       </div>
     </section>

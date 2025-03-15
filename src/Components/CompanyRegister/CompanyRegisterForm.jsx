@@ -211,7 +211,7 @@ const CompanyRegisterForm = () => {
           </div>
           <div>
             <label className="text-secondary mb-2 block text-lg font-bold">
-              رابط صفحة سوشل ميديا من اختيارك
+              رابط موقع الشركة
             </label>
             <input
               name="name"

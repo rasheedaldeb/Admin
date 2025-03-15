@@ -23,6 +23,11 @@ const ComplaintSection = () => {
             <h4 className="text-primary text-xl font-bold">الشكوى</h4>
             <p className="text-secondary text-lg font-bold">test test test</p>
           </div>
+          <div className="flex items-center justify-center">
+            <button className="cursor-pointer rounded-xl bg-red-500 px-6 py-3 text-white">
+              حذف
+            </button>
+          </div>
         </div>
       </div>
     </section>

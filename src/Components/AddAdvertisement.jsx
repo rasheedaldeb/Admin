@@ -5,7 +5,7 @@ import { Oval } from "react-loader-spinner";
 import { StatesContext } from "../Context/Context";
 
 const AddAdvertisement = () => {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("admintoken");
   const { setCreatedAd, createdAd } = useContext(StatesContext);
   // create ad states
   const [image, setImage] = useState("");
@@ -48,7 +48,7 @@ const AddAdvertisement = () => {
 
         if (err.status === 401) {
           alert("انتهت صلاحية الجلسة, يرجى تسجيل الدخول مرة اخرى");
-          localStorage.removeItem("token");
+          localStorage.removeItem("admintoken");
         }
         setError(err.reponse.data.message);
         setIsCreating(false);
