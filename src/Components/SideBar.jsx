@@ -30,9 +30,10 @@ const SideBar = () => {
         console.log(e);
         setIsLoading(false);
         if (e.status === 401) {
+          alert(e.response.data.message);
           localStorage.removeItem("admintoken");
           setIsLoading(false);
-          navigate("/");
+          navigate("/admin-signin");
         }
       }
     };
@@ -59,7 +60,7 @@ const SideBar = () => {
       })
       .catch((err) => {
         if (err.status === 401) {
-          localStorage.removeItem("token");
+          localStorage.removeItem("admintoken");
           navigate("/admin-signin");
         }
       });
