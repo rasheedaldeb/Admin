@@ -4,7 +4,7 @@ import SideBar from "../Components/SideBar";
 
 const Advertisement = () => {
   return (
-    <div className="flex w-screen justify-between">
+    <div className="flex justify-between">
       <SideBar />
       <div className="flex w-[70%] flex-col gap-10">
         <AddAdvertisement />
