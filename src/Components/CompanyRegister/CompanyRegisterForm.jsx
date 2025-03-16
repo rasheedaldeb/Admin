@@ -123,9 +123,6 @@ const CompanyRegisterForm = () => {
               value={phone}
               className="border-primary w-full rounded-3xl border bg-gray-100 px-4 py-3 text-lg text-gray-800 transition-all outline-none focus:bg-gray-100"
               placeholder="ادخل رقم الهاتف"
-              onInvalid={(e) => {
-                e.currentTarget.setCustomValidity("يجب ان يبدأ الرقم ب , 09");
-              }}
               required
               minLength={10}
               onChange={(e) => setPhone(e.target.value)}
