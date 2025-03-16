@@ -47,7 +47,9 @@ const SignInForm = () => {
       className="mt-10 flex w-full flex-col items-center gap-8"
       dir="rtl"
     >
-      <h2 className="text-3xl font-bold text-white">تسجيل الدخول الى الحساب</h2>
+      <h2 className="text-secondary text-3xl font-bold">
+        تسجيل الدخول الى الحساب
+      </h2>
       <form className="w-1/2" onSubmit={(e) => adminSignin(e)}>
         <div className="grid grid-cols-1 gap-6">
           <div>
