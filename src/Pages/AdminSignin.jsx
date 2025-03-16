@@ -1,11 +1,11 @@
 import AdminSignInForm from "../Components/AdminSignInForm";
 const AdminSignin = () => {
   return (
-    <div className="relative flex h-screen items-center justify-center">
+    <div className="flex h-screen items-center justify-center">
       <img
         src="/images/register-signin.jpg"
         alt=""
-        className="absolute top-0 left-0 z-[-1] h-full w-full"
+        className="h-full w-[45%]"
         loading="lazy"
       />
       <AdminSignInForm />
