@@ -71,8 +71,8 @@ const CompanyRegisterForm = () => {
         console.log(err);
         setIsSending(false);
         if (err.response.status === 401) {
-          alert("انتهت صلاحية الجلسة سجل الدخول مرة اخرى");
-          localStorage.removeItem("token");
+          alert(err.response.data.message);
+          localStorage.removeItem(" admintoken");
           navigate("/admin-signin");
         }
       });

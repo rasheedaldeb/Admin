@@ -38,7 +38,7 @@ const AdvertisementSection = () => {
       } catch (e) {
         console.log(e);
         if (e.status === 401) {
-          alert("انتهت صلاحية الجلسة, يرجى تسجيل الدخول مرة اخرى");
+          alert(e.response.data.message);
           localStorage.removeItem("admintoken");
           navigate("/admin-signin");
         }

@@ -47,7 +47,7 @@ const AddAdvertisement = () => {
         setIsCreating(false);
 
         if (err.status === 401) {
-          alert("انتهت صلاحية الجلسة, يرجى تسجيل الدخول مرة اخرى");
+          alert(err.response.data.message);
           localStorage.removeItem("admintoken");
         }
         setError(err.reponse.data.message);
