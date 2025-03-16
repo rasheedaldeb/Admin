@@ -6,7 +6,7 @@ import { Oval } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
 import { StatesContext } from "../../Context/Context";
 const CompanyRegisterForm = () => {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("admintoken");
   const { setCreatedCompany, createdCompany } = useContext(StatesContext);
   const [showPass, setShowPass] = useState(false);
   // company inputs states
