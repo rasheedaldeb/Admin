@@ -52,6 +52,9 @@ const AddAdvertisement = () => {
         }
         setError(err.reponse.data.message);
         setIsCreating(false);
+        if (e.message === "Network Error") {
+          setError("لا يوجد اتصال بالانترنت");
+        }
       });
   };
   return (
@@ -116,11 +119,12 @@ const AddAdvertisement = () => {
               )}
             </button>
           </div>
-          {error ? (
-            <div className="flex items-center justify-center text-xl font-bold text-green-600">
+          {error && (
+            <div className="flex items-center justify-center text-xl font-bold text-red-600">
               {error}
             </div>
-          ) : (
+          )}
+          {success && (
             <div className="flex items-center justify-center text-xl font-bold text-green-600">
               {success}
             </div>

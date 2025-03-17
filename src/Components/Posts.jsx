@@ -4,7 +4,7 @@ import SectionHeader from "./SectionHeader";
 const Posts = () => {
   return (
     <section className="flex flex-col items-center gap-8 px-10">
-      <SectionHeader title="كافة المنشورات" />
+      <SectionHeader title=" كافة المنشورات المقبولة" />
       <div className="posts grid grid-cols-3">
         <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
           <div className="company flex items-center justify-between">
