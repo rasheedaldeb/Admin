@@ -71,7 +71,7 @@ const SideBar = () => {
         <img
           src="/images/logo.png"
           alt="logo"
-          className="h-[170px] w-[170px]"
+          className="h-[120px] w-[120px]"
         />
       </div>
       <div className="wallet flex items-center gap-5" dir="rtl">
@@ -97,6 +97,14 @@ const SideBar = () => {
           <li>
             <Link to="/" className="text-secondary text-xl font-bold">
               الرئيسية
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/states-posts"
+              className="text-secondary text-xl font-bold"
+            >
+              المنشورات المعلقة و المرفوضة
             </Link>
           </li>
           <li>

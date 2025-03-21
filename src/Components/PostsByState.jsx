@@ -186,43 +186,90 @@ const PostsByState = () => {
                     className="h-[130px] w-[130px] rounded-xl"
                   />
                 </div>
-                <div className="content flex items-center gap-8" dir="rtl">
-                  <div className="flex flex-col items-start gap-3">
-                    <div className="name flex items-center gap-2">
-                      <h4 className="text-primary text-xl font-bold">
-                        نوع العقار:
-                      </h4>
-                      <p className="text-secondary text-lg font-bold">
-                        {item.type}
-                      </p>
+                <div className="flex flex-col items-start gap-5">
+                  <div className="content flex items-center gap-8" dir="rtl">
+                    <div className="flex flex-col items-start gap-3">
+                      <div className="name flex items-center gap-2">
+                        <h4 className="text-primary text-xl font-bold">
+                          نوع العقار:
+                        </h4>
+                        <p className="text-secondary text-lg font-bold">
+                          {item.type}
+                        </p>
+                      </div>
+                      <div className="company flex items-center gap-2">
+                        <h4 className="text-primary text-xl font-bold">
+                          الشركة:
+                        </h4>
+                        <p className="text-secondary text-lg font-bold">
+                          {item.Account.name}
+                        </p>
+                      </div>
                     </div>
-                    <div className="company flex items-center gap-2">
-                      <h4 className="text-primary text-xl font-bold">
-                        الشركة:
-                      </h4>
-                      <p className="text-secondary text-lg font-bold">
-                        {item.Account.name}
-                      </p>
+                    <div className="flex flex-col items-start gap-3">
+                      <div className="price-rent flex items-center gap-2">
+                        <h4 className="text-primary text-xl font-bold">
+                          سعر الأيجار :
+                        </h4>
+                        <p className="text-secondary text-lg font-bold">
+                          {item.rentPrice}$
+                        </p>
+                      </div>
+                      <div className="price-sale flex items-center gap-2">
+                        <h4 className="text-primary text-xl font-bold">
+                          سعر البيع :
+                        </h4>
+                        <p className="text-secondary text-lg font-bold">
+                          {item.salePrice}$
+                        </p>
+                      </div>
                     </div>
                   </div>
-                  <div className="flex flex-col items-start gap-3">
-                    <div className="price-rent flex items-center gap-2">
-                      <h4 className="text-primary text-xl font-bold">
-                        {" "}
-                        سعر الأيجار :
-                      </h4>
-                      <p className="text-secondary text-lg font-bold">
-                        {item.rentPrice}$
-                      </p>
+                  <div className="flex items-center gap-8">
+                    <div className="flex flex-col items-start gap-3">
+                      <div className="desc flex items-center gap-2">
+                        <h4 className="text-primary text-xl font-bold">
+                          الوصف :
+                        </h4>
+                        <p className="text-secondary text-lg font-bold">
+                          {item.House && item.House.description}
+                          {item.Villa && item.Villa.description}
+                          {item.CommercialStore &&
+                            item.CommercialStore.description}
+                        </p>
+                      </div>
+                      <div className="createdAt">
+                        <h4 className="text-primary text-xl font-bold">
+                          تاريخ الانشاء:
+                        </h4>
+                        <p className="text-secondary text-lg font-bold">
+                          {item.House && item.House.createdAt}
+                          {item.Villa && item.Villa.createdAt}
+                          {item.CommercialStore &&
+                            item.CommercialStore.createdAt}
+                        </p>
+                      </div>
                     </div>
-                    <div className="price-sale flex items-center gap-2">
-                      <h4 className="text-primary text-xl font-bold">
-                        سعر البيع :
-                      </h4>
-                      <p className="text-secondary text-lg font-bold">
-                        {item.salePrice}$
-                      </p>
-                    </div>
+                    {item.Villa && (
+                      <div className="flex-col items-start gap-3">
+                        <div className="landArea flex items-center gap-2">
+                          <h4 className="text-primary text-xl font-bold">
+                            مساحة الارض :
+                          </h4>
+                          <p className="text-secondary text-lg font-bold">
+                            {item.Villa.landArea}
+                          </p>
+                        </div>
+                        <div className="building flex items-center gap-2">
+                          <h4 className="text-primary text-xl font-bold">
+                            مساحة الفيلا :
+                          </h4>
+                          <p className="text-secondary text-lg font-bold">
+                            {item.Villa.buildingArea}
+                          </p>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

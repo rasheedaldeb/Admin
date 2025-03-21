@@ -7,6 +7,7 @@ import Companies from "./Pages/Companies";
 import Complaint from "./Pages/Complaint";
 import RegistrationUsers from "./Pages/RegistrationUsers";
 import ProtectedRoute from "./Components/ProtectedRoute";
+import StatesPosts from "./Pages/StatesPosts";
 function App() {
   return (
     <>
@@ -15,6 +16,7 @@ function App() {
           <Route path="/admin-signin" element={<AdminSignin />} />
           <Route element={<ProtectedRoute />}>
             <Route path="/" element={<Home />} />
+            <Route path="/states-posts" element={<StatesPosts />} />
             <Route path="/advertisement" element={<Advertisement />} />
             <Route path="/companies" element={<Companies />} />
             <Route path="/complaints" element={<Complaint />} />
