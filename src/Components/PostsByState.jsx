@@ -230,7 +230,7 @@ const PostsByState = () => {
                 <div className="buttons flex w-[25%] flex-col items-center gap-2">
                   <div className="flex items-center gap-5">
                     <button
-                      className="cursor-pointer rounded-xl bg-red-500 px-6 py-3 text-white"
+                      className={`${confirmReject === item.id ? "hidden" : "block"} cursor-pointer rounded-xl bg-red-500 px-6 py-3 text-white`}
                       onClick={() => {
                         confirmRejectToggle(item.id);
                       }}
@@ -242,7 +242,7 @@ const PostsByState = () => {
                         onClick={() => {
                           confirmAcceptToggle(item.id);
                         }}
-                        className="cursor-pointer rounded-xl bg-green-500 px-6 py-3 text-white"
+                        className={`${confirmAccept === item.id ? "hidden" : "block"} cursor-pointer rounded-xl bg-green-500 px-6 py-3 text-white`}
                       >
                         قبول
                       </button>
