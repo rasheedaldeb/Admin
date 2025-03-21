@@ -52,6 +52,11 @@ const PostsByState = () => {
         setTimeout(() => {
           setError("");
         }, 2000);
+        if (err.status === 401) {
+          alert(err.response.data.message);
+          localStorage.removeItem("admintoken");
+          navigate("/admin-signin");
+        }
         setIsRejecting(false);
         if (err.message === "Network Error") {
           setError("لا يوجد اتصال بالانترنت");
@@ -86,6 +91,11 @@ const PostsByState = () => {
         setTimeout(() => {
           setError("");
         }, 2000);
+        if (err.status === 401) {
+          alert(err.response.data.message);
+          localStorage.removeItem("admintoken");
+          navigate("/admin-signin");
+        }
         setIsRejecting(false);
         if (err.message === "Network Error") {
           setError("لا يوجد اتصال بالانترنت");
@@ -298,6 +308,10 @@ const PostsByState = () => {
               )}
             </div>
           ))
+        ) : error ? (
+          <div className="flex items-center justify-center text-xl font-bold text-red-600">
+            {error}
+          </div>
         ) : (
           <div className="flex items-center justify-center">
             <p className="text-secondary text-xl">لا يوجد منشورات</p>

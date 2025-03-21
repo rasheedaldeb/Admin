@@ -77,6 +77,11 @@ const CompaniesSection = () => {
       .catch((err) => {
         console.log(err);
         setIsLoading(false);
+        if (err.status === 401) {
+          alert(err.response.data.message);
+          localStorage.removeItem("admintoken");
+          navigate("/admin-signin");
+        }
       });
   };
   return (
@@ -85,7 +90,7 @@ const CompaniesSection = () => {
       <input
         type="text"
         placeholder="ابحث"
-        onEnter={(e) => setInputValue(e.target.value)}
+        onChange={(e) => setInputValue(e.target.value)}
         className="border-primary h-[50px] w-full rounded-3xl border px-3 outline-none"
         dir="rtl"
       />

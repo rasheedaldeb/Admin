@@ -1,4 +1,4 @@
-import Posts from "../Components/Posts";
+import Posts from "../Components/AllPosts/Posts";
 import SideBar from "../Components/SideBar";
 import TypeButtons from "../Components/TypeButtons";
 import PostsByState from "../Components/PostsByState";
